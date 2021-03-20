@@ -8,15 +8,14 @@
 'use strict';
 
 var union = require('arr-union');
-var clone = require('clone-deep');
-var typeOf = require('kind-of');
+var clonedeep = require('lodash/cloneDeep');
 
 module.exports = function mergeDeep(orig, objects) {
   if (!isObject(orig) && !Array.isArray(orig)) {
     orig = {};
   }
 
-  var target = clone(orig);
+  var target = clonedeep(orig);
   var len = arguments.length;
   var idx = 0;
 
@@ -44,7 +43,7 @@ function merge(target, obj) {
     } else if (Array.isArray(newVal)) {
       target[key] = union([], newVal, oldVal);
     } else {
-      target[key] = clone(oldVal);
+      target[key] = clonedeep(oldVal);
     }
   }
   return target;
@@ -55,7 +54,7 @@ function hasOwn(obj, key) {
 }
 
 function isObject(val) {
-  return typeOf(val) === 'object' || typeOf(val) === 'function';
+  return !Array.isArray(val) && typeof val === 'object' || typeof val === 'function';
 }
 
 function isValidKey(key) {

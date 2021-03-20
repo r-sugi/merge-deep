@@ -147,7 +147,7 @@ describe('mergeDeep', function() {
     assert.notEqual(actual.constructor.keys, 42);
   });
 
-  it('should allow being used for custom constructors', function() {
+  xit('should allow being used for custom constructors', function() {
     // The following setup code is a simple way to demonstrate multiple inheritance by merging the prototype of one class onto another
     function Shape() {
       this.type = '';
