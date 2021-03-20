@@ -9,7 +9,6 @@
 
 var union = require('arr-union');
 var clone = require('clone-deep');
-var typeOf = require('kind-of');
 
 module.exports = function mergeDeep(orig, objects) {
   if (!isObject(orig) && !Array.isArray(orig)) {
@@ -55,7 +54,7 @@ function hasOwn(obj, key) {
 }
 
 function isObject(val) {
-  return typeOf(val) === 'object' || typeOf(val) === 'function';
+  return !Array.isArray(val) && typeof val === 'object' || typeof val === 'function';
 }
 
 function isValidKey(key) {
